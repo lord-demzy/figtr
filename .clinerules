@@ -1,0 +1,36 @@
+# FIGTR — Project Rules
+
+These rules govern all development work in this repository, including AI-assisted development. All contributors and AI assistants MUST follow these rules.
+
+## Documentation First
+
+- Always read the relevant documentation before writing code.
+- Consult `docs/` (Vision, Architecture, Database, API, UI, Decisions) before starting any task.
+- Do not create features without a specification.
+
+## Architecture & Code
+
+- Follow existing architecture patterns and conventions.
+- Do not introduce unnecessary dependencies. Every new dependency must be justified.
+- Use environment variables for all configuration.
+- Never hardcode secrets, API keys, or credentials.
+- Write tests for all new functionality.
+- Keep backend business logic separated from views/controllers.
+- Keep frontend components reusable.
+- Do not modify unrelated files. Keep changes scoped to the task at hand.
+
+## Communication
+
+- Explain changes after completing tasks.
+- Update relevant documentation when behavior changes.
+
+## Definition of Done
+
+A task is complete only when:
+
+- [ ] Code is implemented per the specification.
+- [ ] Tests are written and passing.
+- [ ] Code follows the project's style and conventions.
+- [ ] Documentation is updated if needed.
+- [ ] No unrelated files were modified.
+- [ ] Changes are explained.

@@ -1,0 +1,5 @@
+# FIGTR backend production dependencies
+-r base.txt
+
+# Production WSGI server
+gunicorn>=22.0,<23.0
