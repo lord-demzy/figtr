@@ -31,6 +31,16 @@ This document tracks the current state of the FIGTR project, including completed
 - `docs/Architecture/Frontend-Architecture.md`
 - `docs/Decisions/ADR-005-frontend-foundation.md`
 
+### Backend Product Framework Files
+
+- `backend/fig3/core/registry/contracts.py` — `ProductContract` abstract base class.
+- `backend/fig3/core/registry/product_registry.py` — `ProductRegistry` singleton.
+- `backend/fig3/core/registry/__init__.py` — Package exports.
+- `backend/fig3/edu/product.py` — `EduProductManifest` implementing the contract.
+- `backend/fig3/edu/registry.py` — Registration helpers for FIG3 Edu.
+- `docs/Architecture/Backend-Architecture.md` — Updated with Product Framework section.
+- `docs/Decisions/ADR-007-product-framework.md` — Product framework decision record.
+
 ### Next Steps
 
 - Implement authentication pages (login, forgot password)
@@ -40,8 +50,8 @@ This document tracks the current state of the FIGTR project, including completed
 ## Current Status
 
 - **Phase:** Accounts & Authentication (next)
-- **Status:** Backend foundation complete; frontend foundation complete
-- **Last Updated:** 2026-08-01
+- **Status:** Backend foundation complete; product framework implemented
+- **Last Updated:** 2026-08-02
 
 ## Completed Prompts
 
@@ -52,6 +62,8 @@ This document tracks the current state of the FIGTR project, including completed
 | 3 | Database Architecture & Domain Model | ✅ Complete | Defined database conventions, ERD, MVP vs future entities, and ADR-003. |
 | 4 | Backend Foundation Setup | ✅ Complete | Created Django backend foundation with config, core app, health endpoint, and development tools. |
 | 5 | Frontend Foundation Setup | ✅ Complete | Next.js 16 app with shadcn/ui components, API client, design system, and landing page. |
+| 6 | FIG3 Platform Architecture | ✅ Complete | Refactored backend into FIG3 Core and FIG3 Edu packages per ADR-006. |
+| 7 | Product Framework | ✅ Complete | Implemented Product Contract, Product Registry, and FIG3 Edu product manifest. |
 
 ## Current Documentation
 
@@ -73,6 +85,8 @@ This document tracks the current state of the FIGTR project, including completed
 | `docs/Decisions/ADR-003-database-design.md` | ✅ Complete |
 | `docs/Decisions/ADR-004-backend-foundation.md` | ✅ Complete |
 | `docs/Decisions/ADR-005-frontend-foundation.md` | ✅ Complete |
+| `docs/Decisions/ADR-006-fig3-platform-architecture.md` | ✅ Complete |
+| `docs/Decisions/ADR-007-product-framework.md` | ✅ Complete |
 
 ## Architecture Decisions
 
@@ -80,8 +94,9 @@ This document tracks the current state of the FIGTR project, including completed
 - **ADR-002:** System Architecture — Django + DRF + PostgreSQL backend; Next.js + TypeScript + Tailwind + shadcn/ui frontend; Docker + GitHub Actions + Supabase; Django-managed auth + JWT.
 - **ADR-003:** Database Design — membership-based multi-tenancy, core domain entities, database conventions.
 - **ADR-004:** Backend Foundation — Django project structure, environment-specific settings, core app, quality tools.
-
 - **ADR-005:** Frontend Foundation — Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, React Hook Form + Zod.
+- **ADR-006:** FIG3 Platform Architecture — Refactored backend into FIG3 Core (platform) and FIG3 Edu (product) packages.
+- **ADR-007:** Product Framework — Introduced Product Contract, Product Registry, and product manifests for platform-wide product management.
 
 ## Frontend State
 
@@ -100,6 +115,7 @@ This document tracks the current state of the FIGTR project, including completed
 - **DRF:** 3.17.1
 - **Database:** SQLite (development default); PostgreSQL (production via Supabase)
 - **Architecture:** FIG3 Platform with FIG3 Core and FIG3 Edu packages
+- **Product Framework:** ProductContract, ProductRegistry, EduProductManifest implemented
 - **Health endpoint:** `GET /api/health/` → `{"status": "ok"}`
 - **Tests:** 1 passing (85% coverage)
 - **Linting/Formatting:** Ruff and Black configured and passing

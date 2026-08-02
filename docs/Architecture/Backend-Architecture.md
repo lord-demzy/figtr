@@ -75,6 +75,51 @@ backend/
 - Apps should be small and focused on a single domain responsibility.
 - Business logic lives in a **service layer**, not in views or serializers.
 
+## Product Framework
+
+### Product Contract
+
+Every FIG3 product must implement the `ProductContract` interface defined in
+`fig3/core/registry/contracts.py`. The contract requires the following methods:
+
+- `get_identity()` — code, name, version, description.
+- `get_metadata()` — tenant type, branding, settings.
+- `get_navigation()` — top-level navigation items and routes.
+- `get_permissions()` — product-specific permissions.
+- `get_modules()` — feature modules (enable/disable per tenant).
+- `get_features()` — feature flags and capabilities.
+- `validate()` — optional validation hook.
+
+### Product Registry
+
+The `ProductRegistry` (singleton) in `fig3/core/registry/product_registry.py`
+discovers and manages installed products. It enforces the Product Contract and
+provides lookup by product code.
+
+### Registering a Product
+
+To register a product with the platform:
+
+1. Create a manifest class that implements `ProductContract`.
+2. Call `registry.register(manifest)` during application startup.
+
+Example (FIG3 Edu):
+
+```python
+from fig3.core.registry import ProductRegistry
+from fig3.edu.product import EduProductManifest
+
+registry = ProductRegistry()
+registry.register(EduProductManifest())
+```
+
+### Extension Points
+
+- **Product Contract** — new products implement this interface.
+- **Registry hooks** — `validate()` can be overridden for custom validation.
+- **Module toggles** — modules declared via `get_modules()` can be enabled/disabled per tenant.
+- **Feature flags** — `get_features()` exposes capabilities the platform can query.
+
 ## API Development Approach
 
 - **Django REST Framework (DRF)** is used for API construction.
