@@ -4,10 +4,43 @@
 
 This document tracks the current state of the FIGTR project, including completed prompts, current status, and next steps.
 
+## Frontend Foundation ✅ COMPLETE
+
+**Status:** Ready for feature development
+
+### Completed
+
+- [x] Next.js 16 project initialized with TypeScript
+- [x] Tailwind CSS v4 configured
+- [x] shadcn/ui initialized with base-nova preset
+- [x] UI components created: Button, Input, Label, Card, Dialog, Table, Form, use-toast
+- [x] API client implemented with auth and error handling
+- [x] Toast notification system
+- [x] Design system documented
+- [x] Frontend architecture documented
+- [x] Environment variables configured
+- [x] FIGTR branded landing page
+
+### Files Created
+
+- `frontend/src/components/ui/*.tsx` (8 components)
+- `frontend/src/lib/utils.ts`
+- `frontend/src/lib/api-client.ts`
+- `frontend/.env.example`
+- `docs/UI/Design-System.md` (finalized)
+- `docs/Architecture/Frontend-Architecture.md`
+- `docs/Decisions/ADR-005-frontend-foundation.md`
+
+### Next Steps
+
+- Implement authentication pages (login, forgot password)
+- Build dashboard layout
+- Create role-based views (admin, teacher, student, parent)
+
 ## Current Status
 
-- **Phase:** Backend Foundation
-- **Status:** In Progress
+- **Phase:** Accounts & Authentication (next)
+- **Status:** Backend foundation complete; frontend foundation complete
 - **Last Updated:** 2026-08-01
 
 ## Completed Prompts
@@ -18,6 +51,7 @@ This document tracks the current state of the FIGTR project, including completed
 | 2 | System Architecture | ✅ Complete | Finalized technology stack, system architecture, and multi-tenancy model. |
 | 3 | Database Architecture & Domain Model | ✅ Complete | Defined database conventions, ERD, MVP vs future entities, and ADR-003. |
 | 4 | Backend Foundation Setup | ✅ Complete | Created Django backend foundation with config, core app, health endpoint, and development tools. |
+| 5 | Frontend Foundation Setup | ✅ Complete | Next.js 16 app with shadcn/ui components, API client, design system, and landing page. |
 
 ## Current Documentation
 
@@ -27,6 +61,7 @@ This document tracks the current state of the FIGTR project, including completed
 | `docs/Architecture/System-Architecture.md` | ✅ Complete |
 | `docs/Architecture/Development-Standards.md` | ✅ Complete |
 | `docs/Architecture/Backend-Architecture.md` | ✅ Complete |
+| `docs/Architecture/Frontend-Architecture.md` | ✅ Complete |
 | `docs/Development/Backend-Setup.md` | ✅ Complete |
 | `docs/Database/Database-Conventions.md` | ✅ Complete |
 | `docs/Database/ERD.md` | ✅ Complete |
@@ -37,6 +72,7 @@ This document tracks the current state of the FIGTR project, including completed
 | `docs/Decisions/ADR-002-system-architecture.md` | ✅ Complete |
 | `docs/Decisions/ADR-003-database-design.md` | ✅ Complete |
 | `docs/Decisions/ADR-004-backend-foundation.md` | ✅ Complete |
+| `docs/Decisions/ADR-005-frontend-foundation.md` | ✅ Complete |
 
 ## Architecture Decisions
 
@@ -45,21 +81,34 @@ This document tracks the current state of the FIGTR project, including completed
 - **ADR-003:** Database Design — membership-based multi-tenancy, core domain entities, database conventions.
 - **ADR-004:** Backend Foundation — Django project structure, environment-specific settings, core app, quality tools.
 
+- **ADR-005:** Frontend Foundation — Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, React Hook Form + Zod.
+
+## Frontend State
+
+- **Node.js:** 20.18.1+
+- **Next.js:** 16.2.12
+- **React:** 19.2.4
+- **UI Components:** Button, Input, Label, Card, Dialog, Table, Form, use-toast
+- **API Client:** `src/lib/api-client.ts` with auth token injection and error toasts
+- **Landing page:** FIGTR branded hero + feature cards at `/`
+- **Lint/Build:** Configured via ESLint and Next.js
+
 ## Backend State
 
 - **Python:** 3.14.4 (virtual environment at `backend/.venv/`)
 - **Django:** 5.2.16
 - **DRF:** 3.17.1
 - **Database:** SQLite (development default); PostgreSQL (production via Supabase)
+- **Architecture:** FIG3 Platform with FIG3 Core and FIG3 Edu packages
 - **Health endpoint:** `GET /api/health/` → `{"status": "ok"}`
 - **Tests:** 1 passing (85% coverage)
 - **Linting/Formatting:** Ruff and Black configured and passing
 
 ## Next Steps
 
-1. **Prompt 5 (recommended):** Accounts & Authentication — User model, JWT authentication, and role-based access control foundation.
-2. **Prompt 6:** Schools & Tenancy — School, SchoolProfile, SchoolSettings, Membership models.
-3. **Scaffold frontend:** Create the Next.js project foundation.
+1. **Prompt 6 (recommended):** Accounts & Authentication — User model, JWT authentication, and role-based access control foundation.
+2. **Prompt 7:** Schools & Tenancy — School, SchoolProfile, SchoolSettings, Membership models.
+3. **Frontend features:** Authentication pages, dashboard layout, role-based views.
 
 ## Notes
 

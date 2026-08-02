@@ -92,7 +92,45 @@ The Next.js frontend follows these architectural rules:
 - **API layer separated from components** — All API calls are isolated in a dedicated API layer; components do not make direct HTTP calls.
 - **TypeScript required** — All frontend code is written in TypeScript.
 
-## 6. Multi-Tenancy Architecture
+## 6. Platform Architecture
+
+FIGTR is built on the **FIG3 Platform**, a modular, multi-product SaaS foundation:
+
+```
+FIG3 Platform
+├── FIG3 Core
+│   ├── Identity (users, accounts, auth)
+│   ├── Tenancy (tenant models, context, isolation)
+│   ├── Permissions (roles, permissions, access control)
+│   ├── Branding (tenant theming, visual identity)
+│   ├── Notifications (email, SMS, in-app, push)
+│   ├── Storage (file uploads, object storage, media)
+│   ├── Configuration (settings, feature flags)
+│   ├── Registry (product and module registries)
+│   └── Extensions (extension points, hooks, plugins)
+└── FIG3 Edu
+    └── Education-specific modules
+```
+
+### FIG3 Core
+
+- **Product-agnostic** platform foundation used by all FIG3 products.
+- Must not contain any product-specific business logic.
+- Provides reusable services for identity, tenancy, permissions, branding, notifications, storage, configuration, registry, and extensions.
+
+### FIG3 Edu
+
+- The **education product** built on FIG3 Core.
+- Contains all education-specific business logic and modules.
+- Consumes services from FIG3 Core.
+
+### Future Products
+
+- FIG3 Legal, FIG3 Commerce, FIG3 HR will live alongside FIG3 Core and FIG3 Edu.
+- Each product consumes services from FIG3 Core.
+- No code is written for future products now; the architecture allows easy addition.
+
+## 7. Multi-Tenancy Architecture
 
 FIGTR uses a **membership-based multi-tenancy model**:
 
@@ -120,7 +158,7 @@ School-owned data
 - Cross-school data access is strictly prohibited and enforced at the data-access layer.
 - The active school context is resolved per request based on the authenticated user's membership.
 
-## 7. External Services
+## 8. External Services
 
 FIGTR plans to integrate with the following external services:
 
@@ -133,7 +171,7 @@ FIGTR plans to integrate with the following external services:
 
 > These integrations are planned. Each will be documented in detail before implementation.
 
-## 8. Development Principles
+## 9. Development Principles
 
 FIGTR development follows these principles:
 

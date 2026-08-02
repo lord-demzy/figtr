@@ -19,16 +19,32 @@ backend/
 │   ├── asgi.py          # ASGI entrypoint
 │   ├── urls.py          # Root URL configuration
 │   └── wsgi.py          # WSGI entrypoint
-├── apps/                # Django applications organized by business domain
-│   └── __init__.py
-├── core/                # Shared functionality application
+├── fig3/                # FIG3 Platform packages
 │   ├── __init__.py
-│   ├── apps.py          # App configuration
-│   ├── urls.py          # Core URL configuration
-│   ├── views.py         # Health check endpoint
-│   ├── tests.py         # Core tests
-│   ├── utils.py         # Shared utilities (placeholder)
-│   └── exceptions.py    # Shared exceptions (placeholder)
+│   ├── core/            # FIG3 Core — reusable platform foundation
+│   │   ├── __init__.py
+│   │   ├── apps.py      # Core app configuration
+│   │   ├── urls.py      # Core URL configuration
+│   │   ├── views.py     # Health check endpoint
+│   │   ├── tests.py     # Core tests
+│   │   ├── utils.py     # Shared utilities (placeholder)
+│   │   ├── exceptions.py # Shared exceptions (placeholder)
+│   │   ├── identity/    # Identity services (users, auth)
+│   │   ├── tenancy/     # Multi-tenancy services
+│   │   ├── permissions/ # Authorization services
+│   │   ├── branding/    # Tenant theming services
+│   │   ├── notifications/ # Notification services
+│   │   ├── storage/     # File storage services
+│   │   ├── configuration/ # Settings & feature flags
+│   │   ├── registry/    # Product/module registries
+│   │   └── extensions/  # Extension/hook infrastructure
+│   └── edu/             # FIG3 Edu — education product
+│       ├── __init__.py
+│       ├── apps.py      # Edu app configuration
+│       ├── urls.py      # Edu URL configuration (future)
+│       ├── views.py     # Edu views (future)
+│       ├── tests.py     # Edu tests (future)
+│       └── ...          # Education-specific modules (future)
 ├── tests/               # Project-level test utilities
 │   └── __init__.py
 ├── requirements/        # Dependency management
@@ -42,10 +58,20 @@ backend/
 
 ## Application Organization Rules
 
-- **Django apps are organized by business domain** in the `apps/` directory.
-- Each business domain (e.g., accounts, schools, students, academics, finance, communication) will be a separate Django app.
-- Future apps will be created in `apps/` (e.g., `apps/accounts`, `apps/schools`, `apps/students`).
-- The `core` app contains **shared functionality** only — no business features.
+- **FIG3 Core** contains platform-agnostic services organized into sub-packages:
+  - `identity` — users, accounts, authentication.
+  - `tenancy` — tenant models, context, isolation.
+  - `permissions` — roles, permissions, access control.
+  - `branding` — tenant theming and visual identity.
+  - `notifications` — email, SMS, in-app, push notifications.
+  - `storage` — file uploads, object storage, media management.
+  - `configuration` — settings, feature flags, tenant configuration.
+  - `registry` — product and module registries.
+  - `extensions` — extension points, hooks, plugin system.
+- **FIG3 Core must not contain any product-specific business logic.**
+- **FIG3 Edu** contains all education-specific business logic and modules.
+- Future products (FIG3 Legal, FIG3 Commerce, FIG3 HR) will live alongside FIG3 Core and FIG3 Edu.
+- Each product consumes services from FIG3 Core.
 - Apps should be small and focused on a single domain responsibility.
 - Business logic lives in a **service layer**, not in views or serializers.
 

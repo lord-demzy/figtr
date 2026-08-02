@@ -58,7 +58,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "core",
+    "fig3.core",
+    "fig3.edu",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
